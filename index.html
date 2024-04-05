@@ -1,41 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>noderiot</title>
 </head>
+
 <body>
-    
-
     <label for="summonerNameInput">Enter Summoner Name:</label>
-    <input type="text" id="summonerNameInput">
-    <button onclick="fetchSummonerInformation()">Get Summoner Information</button>
+    <input type="text" id="summonerNameInput" />
+    <button onclick="fetchSummonerInformation()">
+        Get Summoner Information
+    </button>
 
-    <div id="main-data">
-    </div>
-        
-   
+    <div id="main-data"></div>
+
     <script>
-        let url = "http://localhost:3000/getsummonerdata/"
-        let data
-        function fetchSummonerInformation(){
-            let summonerNameValue = document.getElementById('summonerNameInput').value;
+        let url = "http://localhost:3000/getsummonerdata/";
+        let data;
+        function fetchSummonerInformation() {
+            let summonerNameValue = document.getElementById("summonerNameInput").value;
             console.log(summonerNameValue);
             console.log(url + summonerNameValue);
 
             fetch(url + summonerNameValue)
-            
-            .then(response => {  console.log(response); return response.json();})
-            
-            .then(data => {
-                summonerData = data
-                console.log(data)
-                document.getElementById("main-data").innerText += JSON.stringify(data);
-            });
-        };
-        
-        
+                .then((response) => {
+                    console.log(response);
+                    return response.json();
+                })
+
+                .then((data) => {
+                    summonerData = data;
+                    console.log(data);
+                    document.getElementById("main-data").innerText += JSON.stringify(data);
+                });
+        }
     </script>
 </body>
+
 </html>
