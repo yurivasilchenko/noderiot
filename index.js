@@ -19,7 +19,7 @@ connectToDatabase();
 
 const app = express();
 const PORT = 3000;
-const riot_api_key = "RGAPI-0c53b9e9-5274-4dca-8dfe-b3b5183941c8";
+const riot_api_key = process.env.riot_api_key;
 
 app.use(cors());
 
@@ -51,7 +51,7 @@ app.get('/profile/:serverName/:summonerName', checkXRequestedWith, async (req, r
 
             if (response.status == 200) {
                   let searchedSummonersCollection = client.db('noderiot').collection('searchedSummoners')
-                  let collectionData = { puuid: summonerData.puuid, summonerName: summonerName, timeStamp: Date.now() }
+                  let collectionData = { puuid: summonerData.puuid, summonerName: summonerName, serverName: serverName, timeStamp: Date.now() }
                   let result = await searchedSummonersCollection.insertOne(collectionData).catch(err => console.log(err))
             }
       } catch (error) {
